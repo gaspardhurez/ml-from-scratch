@@ -19,15 +19,8 @@ Le projet couvre progressivement les éléments suivants :
 ---
 
 ## 🗂️ Structure
-ml-from-scratch/
-│
-├── algebra/            ← Algèbre linéaire (vecteurs, matrices, géométrie)
-├── preprocessing/      ← Manipulations et transformations de données
-├── core/               ← Fonctions coût, optimisation, utilitaires
-├── models/             ← Modèles ML linéaires
-├── networks/           ← Réseaux de neurones simples (ANN)
-├── notes/              ← Résumés théoriques en markdown
-└── playgrounds/        ← Scripts d’expérimentation
+
+En construction
 
 ---
 
