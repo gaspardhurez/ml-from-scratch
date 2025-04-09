@@ -19,7 +19,8 @@ class Vector():
         if not isinstance(other, Vector):
             return False
         return self.data == other.data
-    
+
+
     
     # VECTOR OPERATIONS
     def scalar_multiply(self, scalar):
@@ -199,6 +200,23 @@ class Vector():
         return cosine
 
 
+
+    # OVERLOAD
+    def __repr__(self):
+        return f"Vector({self.data})"
+    
+    def __add__(self, other):
+        return self.add(other)
+    
+    def __sub__(self, other):
+        return self.substract(other)
+    
+    def __mul__(self, other):
+        linalgvalidator.validate_data_is_scalar(other)
+        return self.scalar_multiply(other)
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
 
 
 
