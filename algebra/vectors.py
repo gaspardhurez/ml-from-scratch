@@ -214,6 +214,7 @@ class Vector():
     def __mul__(self, other):
         linalgvalidator.validate_data_is_scalar(other)
         return self.scalar_multiply(other)
+    
 
     def __rmul__(self, other):
         return self.__mul__(other)

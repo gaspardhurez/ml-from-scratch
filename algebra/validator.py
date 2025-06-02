@@ -59,6 +59,10 @@ class LinearAlgebraValidator:
         return X1.dims == X2.dims
     
     @staticmethod
+    def _are_compatible_for_matrix_product(X1, X2):
+        return X1.dims[1] == X2.dims[0]
+    
+    @staticmethod
     def _are_same_sized_rows(rows_list):
         row_lengths = [len(row) for row in rows_list]
         return len(set(row_lengths)) == 1
@@ -78,6 +82,11 @@ class LinearAlgebraValidator:
     def validate_matrices_have_same_shape(cls, x1, x2):
         if not cls._are_same_shape_matrices(x1, x2):
             raise ValueError("Matrices are not the same shape.")
+    
+    @classmethod
+    def validate_matrices_are_compatible_for_matrix_product(cls, x1, x2):
+        if not cls._are_compatible_for_matrix_product(x1, x2):
+            raise ValueError(f"First matrix columns ({x1.dims[1]}) must be equal to second matrix rows ({x2.dims[2]}).")
     
     
     # --------------------

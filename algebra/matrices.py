@@ -1,4 +1,5 @@
 from algebra.validator import LinearAlgebraValidator as linalgvalidator
+from algebra.vectors import Vector
 
 class Matrix:
 
@@ -135,6 +136,7 @@ class Matrix:
 
         return Matrix([[a * scalar for a in row] for row in self])
     
+    
     def dot(self, other):
         """
         Compute the matrix product (dot product) between two matrices.
@@ -152,15 +154,22 @@ class Matrix:
         -------
         Matrix
             The resulting matrix product.
-
-        Raises
-        ------
-        TypeError
-            If the input is not a Matrix.
-        ValueError
-            If the number of columns in A does not match the number of rows in B.
         """
 
+        linalgvalidator.validate_data_is_valid_matrix(other.data)
+        linalgvalidator.validate_matrices_are_compatible_for_matrix_product(self, other)
+
+        
+        row_vectors = [Vector(row) for row in self.data]
+        col_vectors = [Vector(col) for col in other.transpose().data]
+        
+        new_matrix = [
+            [row.dot(col) for col in col_vectors]
+                for row in row_vectors
+        ]
+        
+        return Matrix(new_matrix)
+    
 
 
     # OVERLOAD
@@ -178,3 +187,6 @@ class Matrix:
     
     def __getitem__(self, index):
         return self.data[index]
+    
+    def __matmul__(self, other):
+        return self.dot(other)
