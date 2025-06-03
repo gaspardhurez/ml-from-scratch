@@ -170,6 +170,34 @@ class Matrix:
         
         return Matrix(new_matrix)
     
+    
+    def apply_to_vector(self, vector : Vector):
+        """
+        Apply the matrix as a linear transformation to a vector.
+
+        Mathematical definition:
+            If A ∈ ℝᵐˣⁿ and v ∈ ℝⁿ, then the transformation T(v) = A ⋅ v results in a new vector u ∈ ℝᵐ.
+
+            This operation corresponds to applying the linear transformation represented by the matrix
+            to the input vector, producing a new vector in the transformed space.
+
+        Parameters
+        ----------
+        vector : Vector
+            The vector to which the linear transformation (matrix) is applied.
+
+        Returns
+        -------
+        Vector
+            The resulting vector after applying the transformation.
+        """
+
+        linalgvalidator.validate_data_is_vector(vector)
+
+        column_matrix = Matrix([[col] for col in vector.data])
+        result_matrix = self.dot(column_matrix)
+        transformed_vector = [row[0] for row in result_matrix.data]
+        return Vector(transformed_vector)
 
 
     # OVERLOAD
@@ -189,4 +217,9 @@ class Matrix:
         return self.data[index]
     
     def __matmul__(self, other):
-        return self.dot(other)
+        if isinstance(other, Matrix):
+            return self.dot(other)
+        elif isinstance(other, Vector):
+            return self.apply_to_vector(other)
+        else:
+            raise TypeError(f"Unsupported operand type(s) for @: 'Matrix' and '{type(other).__name__}'")

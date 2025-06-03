@@ -86,7 +86,7 @@ class LinearAlgebraValidator:
     @classmethod
     def validate_matrices_are_compatible_for_matrix_product(cls, x1, x2):
         if not cls._are_compatible_for_matrix_product(x1, x2):
-            raise ValueError(f"First matrix columns ({x1.dims[1]}) must be equal to second matrix rows ({x2.dims[2]}).")
+            raise ValueError(f"First matrix columns ({x1.dims[0]}) must be equal to second matrix rows ({x2.dims[1]}).")
     
     
     # --------------------
