@@ -16,6 +16,10 @@ class LinearAlgebraValidator:
     @staticmethod
     def _is_vector(x):
         return x.__class__.__name__ == "Vector"
+    
+    @staticmethod
+    def _is_matrix(x):
+        return x.__class__.__name__ == "Matrix"
 
     @classmethod
     def _is_list_of_scalars(cls, data):
@@ -27,9 +31,14 @@ class LinearAlgebraValidator:
             raise TypeError("Expected a list as input.")
     
     @classmethod
-    def validate_data_is_vector(cls, data):
+    def validate_object_is_vector(cls, data):
         if not cls._is_vector(data):
             raise TypeError("Expected a Vector object as input.")
+    
+    @classmethod
+    def validate_object_is_matrix(cls, data):
+        if not cls._is_matrix(data):
+            raise TypeError("Expected a Matrix object as input.")
 
     @classmethod
     def validate_data_is_scalar(cls, data):
@@ -66,6 +75,9 @@ class LinearAlgebraValidator:
     def _are_same_sized_rows(rows_list):
         row_lengths = [len(row) for row in rows_list]
         return len(set(row_lengths)) == 1
+    
+    def _are_same_length_matrix_and_vector(A, b):
+        return A.dims[0] == b.length
          
 
     @classmethod
@@ -82,6 +94,11 @@ class LinearAlgebraValidator:
     def validate_matrices_have_same_shape(cls, x1, x2):
         if not cls._are_same_shape_matrices(x1, x2):
             raise ValueError("Matrices are not the same shape.")
+    
+    @classmethod
+    def validate_matrix_and_vector_have_same_length(cls, A, b):
+        if not cls._are_same_length_matrix_and_vector(A, b):
+            raise ValueError(f"Matrix ({A.dims[0]}) and Vector ({b.length}) mist have the same length.")
     
     @classmethod
     def validate_matrices_are_compatible_for_matrix_product(cls, x1, x2):

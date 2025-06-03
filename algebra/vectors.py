@@ -68,7 +68,7 @@ class Vector():
         """
 
         # --- Validations ---
-        linalgvalidator.validate_data_is_vector(vector2)
+        linalgvalidator.validate_object_is_vector(vector2)
         linalgvalidator.validate_vectors_have_same_size(self, vector2)
 
         return Vector([a + b for a, b in zip(self.data, vector2.data)])
@@ -94,7 +94,7 @@ class Vector():
         """
 
         # --- Validations ---
-        linalgvalidator.validate_data_is_vector(vector2)
+        linalgvalidator.validate_object_is_vector(vector2)
         linalgvalidator.validate_vectors_have_same_size(self, vector2)
 
         return Vector([a - b for a, b in zip(self.data, vector2.data)])
@@ -119,7 +119,7 @@ class Vector():
         """
 
         # --- Validations ---
-        linalgvalidator.validate_data_is_vector(vector2)
+        linalgvalidator.validate_object_is_vector(vector2)
         linalgvalidator.validate_vectors_have_same_size(self, vector2)
 
         
@@ -163,7 +163,7 @@ class Vector():
         """
 
         # --- Validations ---
-        linalgvalidator.validate_data_is_vector(vector2)
+        linalgvalidator.validate_object_is_vector(vector2)
         linalgvalidator.validate_vectors_have_same_size(self, vector2)
 
         
@@ -190,7 +190,7 @@ class Vector():
         """
 
         # --- Validations ---
-        linalgvalidator.validate_data_is_vector(vector2)
+        linalgvalidator.validate_object_is_vector(vector2)
         linalgvalidator.validate_vectors_have_same_size(self, vector2)
         linalgvalidator.validate_vector_has_non_null_magnitude(self)
         linalgvalidator.validate_vector_has_non_null_magnitude(vector2)

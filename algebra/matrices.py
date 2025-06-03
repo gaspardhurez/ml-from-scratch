@@ -192,7 +192,7 @@ class Matrix:
             The resulting vector after applying the transformation.
         """
 
-        linalgvalidator.validate_data_is_vector(vector)
+        linalgvalidator.validate_object_is_vector(vector)
 
         column_matrix = Matrix([[col] for col in vector.data])
         result_matrix = self.dot(column_matrix)
